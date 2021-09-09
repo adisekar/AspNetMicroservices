@@ -37,14 +37,14 @@ namespace Discount.API.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Coupon>> UpdateDiscount([FromBody] Coupon coupon)
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<bool>> UpdateDiscount([FromBody] Coupon coupon)
         {
             return Ok(await _repository.UpdateDiscount(coupon));
         }
 
-        [HttpDelete]
-        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [HttpDelete("{productName}", Name = "DeleteDiscount")]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<bool>> DeleteDiscount(string productName)
         {
             return Ok(await _repository.DeleteDiscount(productName));
