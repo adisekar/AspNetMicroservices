@@ -150,3 +150,17 @@ services:
     ports:
         - "8005:80"
 
+
+  eshop.web:
+    container_name: eshop.web
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - "ApiSettings:GatewayAddress=http://ocelotapigw"
+    depends_on:
+        - ocelotapigw
+        - catalog.api
+        - basket.api
+        - discount.api
+        - ordering.api
+    ports:
+        - "8006:80"
